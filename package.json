@@ -1,0 +1,32 @@
+{
+  "name": "launchpad-gh",
+  "version": "0.0.0",
+  "description": "GitHub plugin for Assembly Launchpad",
+  "main": "index.js",
+  "scripts": {
+    "test": "lab -t 95"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Pletcher/launchpad-gh.git"
+  },
+  "keywords": [
+    "launchpad",
+    "assembly"
+  ],
+  "author": "chuck@assembly.com",
+  "license": "ASM-BSD",
+  "bugs": {
+    "url": "https://github.com/Pletcher/launchpad-gh/issues"
+  },
+  "homepage": "https://github.com/Pletcher/launchpad-gh",
+  "dependencies": {
+    "hapi": "^6.5.1",
+    "joi": "^4.6.2",
+    "nipple": "^2.5.5"
+  },
+  "devDependencies": {
+    "lab": "^4.0.2",
+    "sinon": "^1.10.3"
+  }
+}
