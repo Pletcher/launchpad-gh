@@ -1,3 +1,4 @@
+var Fs = require('fs');
 var Hapi = require('hapi');
 var Lab = require('lab');
 var Nipple = require('nipple');
@@ -10,62 +11,51 @@ var before = lab.before;
 var after = lab.after;
 var expect = Lab.expect;
 
-describe('github/index', function() {
-  var server = new Hapi.Server();
-  var baseOptions = {
-    method: 'POST',
-    url: '/github'
-  };
+describe('CreatePage', function() {
+  var createPage = require('../../lib/github/create_page');
 
-  server.pack.register({
-    plugin: require('../../'),
-    options: {
-      token: 'zanzibar',
-      uri: 'github.com',
-      organization: 'fancy-coffee'
-    }
-  }, function(err) {
-    expect(err).to.equal(undefined);
-  });
-
-  describe('createRepository()', function() {
+  describe('getReference()', function() {
     before(function(done) {
+      Sinon.stub(Fs, 'readFileSync', function(file, encoding) {
+        return 'flubwub';
+      });
+
       Sinon.stub(Nipple, 'request', function(method, uri, options, callback) {
         return callback(null);
       });
 
       Sinon.stub(Nipple, 'read', function(response, options, callback) {
-        return callback(new Error('this one looks bad'));
+        return callback(null, { object: { sha: 'rk' } });
       });
 
       done();
     });
 
     after(function(done) {
+      Fs.readFileSync.restore();
       Nipple.request.restore();
       Nipple.read.restore();
 
       done();
     });
 
-    it('handles errors', function(done) {
-      var options = Object.create(baseOptions);
+    it('gets the sha of the reference', function(done) {
+      createPage({ description: 'everything is awesome' }, 'token', function(err, body) {
+        expect(err).not.to.exist;
+        expect(body).to.exist;
 
-      options.payload = {
-        name: 'Ren',
-        description: 'Stimpy'
-      };
-
-      server.inject(options, function(response) {
-        expect(response.statusCode).to.equal(500);
         done();
       });
     });
   });
 
-  describe('createPage()', function() {
+  describe('createBranch()', function() {
     before(function(done) {
       var calls = 0;
+
+      Sinon.stub(Fs, 'readFileSync', function(file, encoding) {
+        return 'flubwub';
+      });
 
       Sinon.stub(Nipple, 'request', function(method, uri, options, callback) {
         return callback(null);
@@ -84,6 +74,7 @@ describe('github/index', function() {
     });
 
     after(function(done) {
+      Fs.readFileSync.restore();
       Nipple.request.restore();
       Nipple.read.restore();
 
@@ -91,15 +82,9 @@ describe('github/index', function() {
     });
 
     it('handles errors', function(done) {
-      var options = Object.create(baseOptions);
+      createPage({ description: 'everything is awesome' }, 'token', function(err, body) {
+        expect(err).to.exist;
 
-      options.payload = {
-        name: 'Ren',
-        description: 'Stimpy'
-      };
-
-      server.inject(options, function(response) {
-        expect(response.statusCode).to.equal(500);
         done();
       });
     });
