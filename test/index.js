@@ -53,6 +53,7 @@ describe('index', function() {
 
     options.payload = {
       name: 'Ren',
+      slug: 'ren-asm',
       description: 'Stimpy'
     };
 
@@ -67,6 +68,7 @@ describe('index', function() {
 
     options.payload = {
       name: 'R',
+      slug: 'r',
       description: 'Stimpy'
     };
 
@@ -81,7 +83,8 @@ describe('index', function() {
 
     options.payload = {
       name: 'RenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRenRen',
-      description: 'Stimpy'
+      description: 'Stimpy',
+      slug: 'rerereren'
     };
 
     server.inject(options, function(response) {
@@ -95,7 +98,8 @@ describe('index', function() {
 
     options.payload = {
       name: 'Ren',
-      description: 'S'
+      description: 'S',
+      slug: 'ren'
     };
 
     server.inject(options, function(response) {

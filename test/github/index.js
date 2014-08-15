@@ -53,6 +53,7 @@ describe('github/index', function() {
 
       options.payload = {
         name: 'Ren',
+        slug: 'ren-asm',
         description: 'Stimpy'
       };
 
@@ -95,6 +96,7 @@ describe('github/index', function() {
 
       options.payload = {
         name: 'Ren',
+        slug: 'ren-asm',
         description: 'Stimpy'
       };
 
