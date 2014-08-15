@@ -212,6 +212,13 @@
                   text-align: center;
               }
 
+              #success {
+                  background-color: #fbcdb9;
+                  color: #222;
+                  width: 100%;
+                  opacity: 0;
+              }
+
           /* ==========================================================================
              Media Queries
              ========================================================================== */
@@ -438,7 +445,10 @@
                     DESCRIPTION
                 </p>
 
-                <form>
+                <div id="success">
+                  <h3>Successfully subscribed to PRODUCT_NAME updates</h3>
+                </div>
+                <form id="email-signup" action="http://localhost.assembly.com:5000/api/products/PRODUCT_SLUG/mailing_lists">
                     <input class="email" type="email" name="email" placeholder="Email me when it's ready">
                     <input type="submit" value="&gt;">
                 </form>
@@ -452,5 +462,28 @@
         </div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script>
+          $('#email-signup').on('submit', function(e) {
+            e.preventDefault();
+
+            var $form = $(this);
+            var path = $form.attr('action');
+            var data = {
+              email: $form.find('input[name="email"]').val()
+            };
+
+            $.post(path, data)
+              .done(function(data) {
+                $form.find('input[name="email"]').val('');
+                $('#success').fadeTo(50, 1);
+                $('#success').fadeTo(4000, 0);
+              })
+              .fail(function(err) {
+                console.error(err);
+              });
+          });
+
+        </script>
+
     </body>
 </html>
