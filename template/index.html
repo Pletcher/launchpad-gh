@@ -180,11 +180,26 @@
 
               body {
                   font-family: Lato, helvetica, arial, sans-serif;
+                  margin: 0;
+                  padding: 0;
+                  height: 100%;
+              }
+
+              .blurb {
+                  opacity: 0.8;
+                  margin-top: 40px;
+                  margin-right: auto;
+                  margin-left: auto;
+                  width: 60%;
+              }
+
+              .core-team {
+                  margin-top: 80px;
               }
 
               .email {
-                  width: 30%;
-                  min-width: 300px;
+                  width: 60%;
+                  min-width: 180px;
               }
 
               .footer-container {
@@ -210,6 +225,7 @@
 
               .main-container {
                   text-align: center;
+                  padding-bottom: 170px;
               }
 
               #success {
@@ -218,6 +234,11 @@
                   color: #222;
                   width: 100%;
                   opacity: 0;
+              }
+
+              #wrapper {
+                  min-height: 100%;
+                  position: relative;
               }
 
           /* ==========================================================================
@@ -432,34 +453,57 @@
         </style>
     </head>
     <body>
-        <!--[if lt IE 8]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+        <div id="wrapper">
+          <!--[if lt IE 8]>
+              <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+          <![endif]-->
 
-        <div class="header-container">
-        </div>
+          <div class="header-container">
+          </div>
 
-        <div class="main-container">
-            <div class="main wrapper clearfix">
-                <h1 class="product-name">PRODUCT_NAME</h1>
-                <p>
-                    DESCRIPTION
-                </p>
+          <div class="main-container">
+              <div class="main wrapper clearfix">
+                  <h1 class="product-name">PRODUCT_NAME</h1>
+                  <p>
+                      DESCRIPTION
+                  </p>
 
-                <div id="success">
-                  <h3>Successfully subscribed to PRODUCT_NAME updates</h3>
-                </div>
-                <form id="email-signup" action="http://localhost.assembly.com:5000/api/products/PRODUCT_SLUG/mailing_lists">
-                    <input class="email" type="email" name="email" placeholder="Email me when it's ready">
-                    <input type="submit" value="&gt;">
-                </form>
-            </div> <!-- #main -->
-        </div> <!-- #main-container -->
+                  <div id="success">
+                    <h3>Successfully subscribed to PRODUCT_NAME updates</h3>
+                  </div>
 
-        <div class="footer-container">
-            <footer class="wrapper">
-                <h3>Made with ♥ on <a href="//assembly.com">Assembly</a></h3>
-            </footer>
+                  <form id="email-signup" action="http://localhost.assembly.com:5000/api/products/PRODUCT_SLUG/mailing_lists">
+                      <input class="email" type="email" name="email" placeholder="Email me when it's ready">
+                      <input type="submit" value="&gt;">
+                  </form>
+
+                  <div class="blurb">
+                    <p>
+                      Startups on <a href="https://assembly.com" style="color: #222;">Assembly</a> are unlike traditional companies.
+                      They don't have investors, shareholders, or even employees.
+                      Instead, a global community creates and owns them, together.
+                    </p>
+                    <p>
+                      Anyone can jump in and help out a startup on Assembly. The
+                      entire process is a collaborative effort including its
+                      vision, development, design, and marketing.
+                    </p>
+                  </div>
+
+                  <!-- TODO: Supply core team usernames and avatars when building the page -->
+                  <!-- <div class="core-team">
+                    <h3>The PRODUCT_NAME Core Team</h3>
+                    <p>Super, Teammate, Awesome, Team</p>
+                    CORE_TEAM
+                  </div> -->
+              </div> <!-- #main -->
+          </div> <!-- #main-container -->
+
+          <div class="footer-container">
+              <footer class="wrapper">
+                  <h3>Made with ♥ on <a href="//assembly.com">Assembly</a></h3>
+              </footer>
+          </div>
         </div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
