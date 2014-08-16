@@ -82,7 +82,7 @@ describe('CreatePage', function() {
     });
 
     it('handles errors', function(done) {
-      createPage({ description: 'everything is awesome' }, 'token', function(err, body) {
+      createPage({ description: 'everything is awesome', refUri: 'foo', branchUri: 'bar', pageUri: 'baz' }, 'token', function(err, body) {
         expect(err).to.exist;
 
         done();

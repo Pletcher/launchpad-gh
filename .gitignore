@@ -1,6 +1,8 @@
 *.swp
 .DS_Store
 
+npm-debug.log
+
 config.json
 
 node_modules

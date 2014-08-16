@@ -1,7 +1,14 @@
 Launchpad GitHub Plugin
 ---
 
-`curl -X POST /github -d '{ "name": {PRODUCT_NAME}, "slug": {PRODUCT_SLUG}, "description": {PRODUCT_DESCRIPTION} }'`
+```
+curl -X POST /github -d '{
+    \ "name": {PRODUCT_NAME},
+    \ "slug": {PRODUCT_SLUG},
+    \ "description": {PRODUCT_DESCRIPTION},
+    \ "homepage": {PRODUCT_HOMEPAGE}
+    \ }'
+```
 
 And you're done. Launchpad and the plugin will take care of creating a landing page with a signup form for the product.
 
