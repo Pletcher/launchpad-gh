@@ -91,6 +91,43 @@ describe('CreatePage', function() {
   });
 
   describe('createPage()', function() {
+    before(function(done) {
+      var calls = 0;
 
+      Sinon.stub(Fs, 'readFileSync', function(file, encoding) {
+        return 'flubwub';
+      });
+
+      Sinon.stub(Nipple, 'request', function(method, uri, options, callback) {
+        return callback(null);
+      });
+
+      Sinon.stub(Nipple, 'read', function(response, options, callback) {
+        if (calls < 2) {
+          calls++;
+          return callback(null, {});
+        }
+
+        return callback(new Error('createPage() error'));
+      });
+
+      done();
+    });
+
+    after(function(done) {
+      Fs.readFileSync.restore();
+      Nipple.request.restore();
+      Nipple.read.restore();
+
+      done();
+    });
+
+    it('handles errors', function(done) {
+      createPage({ description: 'everything is awesome', refUri: 'foo', branchUri: 'bar', pageUri: 'baz' }, 'token', function(err, body) {
+        expect(err).to.exist;
+
+        done();
+      });
+    });
   });
 });

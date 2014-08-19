@@ -30,13 +30,15 @@
     <div class="cover-container">
       <div class="masthead clearfix">
         <div class="inner">
-          <h1 class="masthead-brand">{{name}}</h1>
+          <h1 class="masthead-brand"><a href="https://assembly.com/{{slug}}">{{name}}</a></h1>
         </div>
       </div>
 
       <div class="inner cover">
         {{#if poster_image_url}}
-          <img src={{poster_image_url}} width="300px">
+          <a href="https://assembly.com/{{slug}}">
+            <img src={{poster_image_url}} width="300px">
+          </a>
         {{/if}}
 
         <h2 class="cover-heading">{{pitch}}</h2>
@@ -76,14 +78,14 @@
           <button type="submit" class="btn btn-default btn-lg">&gt;</button>
         </form>
 
-
-
         <h2 class="cover-heading">Core Team</h2>
         <ul class="list-inline">
           {{#each core_team}}
             <li>
-              <img src={{avatar_url}} class="img-circle">
-              <h5>{{username}}</h5>
+              <a href="https://assembly.com/users/{{username}}">
+                <img src={{avatar_url}} class="img-circle">
+                <h5>{{username}}</h5>
+              </a>
             </li>
           {{/each}}
         </ul>
