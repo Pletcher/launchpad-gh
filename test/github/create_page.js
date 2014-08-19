@@ -40,7 +40,7 @@ describe('CreatePage', function() {
     });
 
     it('gets the sha of the reference', function(done) {
-      createPage({ description: 'everything is awesome' }, 'token', function(err, body) {
+      createPage({ description: 'everything is awesome', pageUri: 'refs' }, 'token', function(err, body) {
         expect(err).not.to.exist;
         expect(body).to.exist;
 

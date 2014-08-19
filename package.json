@@ -4,7 +4,7 @@
   "description": "GitHub plugin for Assembly Launchpad",
   "main": "index.js",
   "scripts": {
-    "test": "lab -t 90"
+    "test": "TEST=true lab -t 90"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/Pletcher/launchpad-gh",
   "dependencies": {
+    "bunyan": "^1.0.0",
     "hapi": "^6.5.1",
     "joi": "^4.6.2",
     "nipple": "^2.5.5"

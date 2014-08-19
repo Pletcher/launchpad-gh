@@ -17,12 +17,11 @@ describe('index', function() {
     });
 
     Sinon.stub(Nipple, 'read', function(response, options, callback) {
-      return callback(null, {});
+      return callback(null, { object: {} });
     });
 
     done();
   });
-
 
   after(function(done) {
     Nipple.request.restore();
