@@ -32,6 +32,24 @@
         <div class="inner">
           <h1 class="masthead-brand">{{name}}</h1>
         </div>
+      </div>
+
+      <div class="inner cover">
+        {{#if poster_image_url}}
+          <img src={{poster_image_url}} width="300px">
+        {{/if}}
+
+        <h2 class="cover-heading">{{pitch}}</h2>
+
+        {{#if description}}
+          <p class="lead">{{description}}</p>
+        {{/if}}
+
+        <style>
+          .alert {
+             z-index: 9000; position: absolute; width: 300px; margin-left: -180px; left: 50%;
+          }
+        </style>
 
         <div class="alert alert-success alert-dismissible" role="alert" style="display: none;">
           <button type="button" class="close" data-dismiss="alert">
@@ -48,27 +66,17 @@
           </button>
           <h3>There was a problem adding you to the mailing list. Please try again later.</h3>
         </div>
-      </div>
-
-      <div class="inner cover">
-
-        {{#if poster_image_url}}
-          <img src={{poster_image_url}} width="300px">
-        {{/if}}
-
-        <h2 class="cover-heading">{{pitch}}</h2>
-
-        {{#if description}}
-          <p class="lead">{{description}}</p>
-        {{/if}}
 
         <!-- https://assembly.com/api/products/{{slug}}/mailing_lists -->
-        <form id="email-signup" class="form-inline" role="form" action="https://assembly.com/api/products/{{slug}}/mailing_lists">
+        <form id="email-signup" class="form-inline" role="form" data-url="https://assembly.com/api/products/{{slug}}/mailing_lists">
           <div class="form-group form-group-lg">
             <label class="sr-only" for="email">Email address</label>
             <input class="email form-control input-lg" type="email" name="email" placeholder="Email me when it's ready" style="min-width: 300px; text-align: center;" autofocus="true">
           </div>
+          <button type="submit" class="btn btn-default btn-lg">&gt;</button>
         </form>
+
+
 
         <h2 class="cover-heading">Core Team</h2>
         <ul class="list-inline">
@@ -119,16 +127,20 @@
           });
 
           $('.site-wrapper-inner').html(html);
+
+          // attach submit listener
+          $('#email-signup').submit(function(e) {
+            e.preventDefault();
+            console.log('called');
+            subscribe($(this));
+          });
         }).fail(function(err) {
           console.error(err);
         });
     });
 
-    $('#email-signup').on('submit', function(e) {
-      e.preventDefault();
-
-      var $form = $(this);
-      var path = $form.attr('action');
+    function subscribe($form) {
+      var path = $form.data('url');
       var data = {
         email: $form.find('input[name="email"]').val()
       };
@@ -145,7 +157,7 @@
           $('.alert-danger').fadeTo(100, 1);
           $('.alert-danger').fadeTo(10*1000, 0);
         });
-    });
+    }
 
   </script>
 </body>
