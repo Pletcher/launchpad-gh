@@ -1,6 +1,6 @@
 {
   "name": "launchpad-gh",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "GitHub plugin for Assembly Launchpad",
   "main": "index.js",
   "scripts": {
