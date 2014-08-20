@@ -69,8 +69,7 @@
           <h3>There was a problem adding you to the mailing list. Please try again later.</h3>
         </div>
 
-        <!-- https://assembly.com/api/products/{{slug}}/mailing_lists -->
-        <form id="email-signup" class="form-inline" role="form" data-url="https://assembly.com/api/products/{{slug}}/mailing_lists">
+        <form id="email-signup" class="form-inline" role="form" data-url="https://assembly.com/api/products/{{slug}}/potential_users">
           <div class="form-group form-group-lg">
             <label class="sr-only" for="email">Email address</label>
             <input class="email form-control input-lg" type="email" name="email" placeholder="Email me when it's ready" style="min-width: 300px; text-align: center;" autofocus="true">
@@ -133,7 +132,7 @@
           // attach submit listener
           $('#email-signup').submit(function(e) {
             e.preventDefault();
-            console.log('called');
+
             subscribe($(this));
           });
         }).fail(function(err) {
